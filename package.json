@@ -1,0 +1,14 @@
+{
+  "name": "NAPRIRODKU",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "config": "^1.19.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "morgan": "^1.7.0"
+  }
+}
