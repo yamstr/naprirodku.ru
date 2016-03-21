@@ -11,4 +11,4 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.listen(config.port);
+app.listen(process.env.PORT);
