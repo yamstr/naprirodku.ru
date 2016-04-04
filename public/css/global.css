@@ -1,0 +1,71 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #000;
+    background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0px;
+    padding: 0px;
+    font-weight: normal;
+}
+
+h1 { font-size: 40px }
+h2 { font-size: 32px }
+h3 { font-size: 24px }
+h4 { font-size: 16px }
+h5 { font-size: 14px }
+h6 { font-size: 12px }
+
+p {
+    margin: 20px 0px;
+    padding: 0px;
+    line-height: 1.5;
+}
+
+small {
+    font-size: 12px;
+}
+
+a {
+    color: #0d44a0;
+}
+
+a:hover {
+    color: #cc0000;
+}
+/*
+.container {
+    max-width: 1280px;
+    margin: 0px auto;
+    padding: 0px 20px;
+}
+
+.index .preview {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@media all and (max-width: 600px) {
+    .index .preview .place {
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 601px) and (max-width: 960px) {
+    .index .preview .place {
+        width: calc(50% - 20px);
+        margin: 0px 20px 20px 0px;
+    }
+}
+
+@media all and (min-width: 961px) {
+    .index .preview .place {
+        width: calc(25% - 20px);
+        margin: 0px 20px 20px 0px;
+    }
+}
+*/
