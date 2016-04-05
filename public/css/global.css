@@ -2,7 +2,6 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     color: #000;
     background-color: #fff;
 }
@@ -10,24 +9,14 @@ body {
 h1, h2, h3, h4, h5, h6 {
     margin: 20px 0px;
     padding: 0px;
-    font-weight: normal;
+    font-weight: 300;
 }
-
-h1 { font-size: 40px }
-h2 { font-size: 32px }
-h3 { font-size: 24px }
-h4 { font-size: 16px }
-h5 { font-size: 14px }
-h6 { font-size: 12px }
 
 p {
     margin: 20px 0px;
     padding: 0px;
+    font-weight: 300;
     line-height: 1.5;
-}
-
-small {
-    font-size: 12px;
 }
 
 a {
@@ -36,6 +25,17 @@ a {
 
 a:hover {
     color: #cc0000;
+}
+
+.logotype {
+    margin: 20px 0px;
+    padding: 0px;
+    font-size: 36px;
+    font-weight: 300;
+}
+
+.place p {
+    font-size: 16px;
 }
 
 .place img {
