@@ -41,36 +41,3 @@ a:hover {
 .place img {
     max-width: 100%;
 }
-
-/*
-.container {
-    max-width: 1280px;
-    margin: 0px auto;
-    padding: 0px 20px;
-}
-
-.index .preview {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-@media all and (max-width: 600px) {
-    .index .preview .place {
-        width: 100%;
-    }
-}
-
-@media all and (min-width: 601px) and (max-width: 960px) {
-    .index .preview .place {
-        width: calc(50% - 20px);
-        margin: 0px 20px 20px 0px;
-    }
-}
-
-@media all and (min-width: 961px) {
-    .index .preview .place {
-        width: calc(25% - 20px);
-        margin: 0px 20px 20px 0px;
-    }
-}
-*/
