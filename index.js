@@ -46,7 +46,7 @@ app.get('/places/:id/', function(req, res) {
     });
 });
 
-app.get('/places/:id/:file', function(req, res) {
+app.get('/places/:id/photos/:file', function(req, res) {
     res.sendFile(req.params.file, {
         root: __dirname + '/data/plases/' + req.params.id + '/photos',
         dotfiles: 'deny'
