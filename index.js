@@ -38,11 +38,9 @@ app.get('/places/:id/', function(req, res) {
         if (err) {
             res.status(404).end();
         } else {
-            var meta = JSON.parse(results.meta);
-
             res.render('place', {
                 article: marked(results.article),
-                meta: meta
+                meta: JSON.parse(results.meta)
             });
         }
     });

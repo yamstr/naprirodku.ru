@@ -44,6 +44,11 @@ block content
                         td Координаты
                         td [#{meta.position.lat},#{meta.position.lng}]
                 .page-header
+                    h2(style='color: #999') Поделиться
+                script(type='text/javascript', src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js', charset='utf-8')
+                script(type='text/javascript', src='//yastatic.net/share2/share.js', charset='utf-8')
+                .ya-share2(data-services='vkontakte,facebook,gplus,twitter', data-counter='')
+                .page-header
                     h2(style='color: #999') Новые места
                 p
                     a(href='/places/1/')
