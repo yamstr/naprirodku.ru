@@ -1,5 +1,12 @@
 extends ./layout.jade
 
+block title
+    title #{meta.title}
+
+block description
+    meta(name='description', content=meta.lead)
+    meta(name='image', content=meta.photo)
+
 block content
     .container
         .row
