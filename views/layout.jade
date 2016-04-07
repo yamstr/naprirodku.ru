@@ -16,14 +16,17 @@ html
         link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,cyrillic')
         link(rel='stylesheet', type='text/css', href='/css/global.css')
     body
-        div(style='border-bottom: 1px solid #ccc')
-            .container
-                .logotype
-                    a(href='/', style='text-decoration: none; color: #000')
-                        span(style='color: #cc0000') NA
-                        span PRIRODKU
-        block content
-        div(style='border-top: 1px solid #ccc')
-            .container
-                p
-                    small &copy; 2016 The V. Team
+        .container
+            .logotype
+                a(href='/', style='text-decoration: none; color: #000')
+                    span(style='color: #cc0000') NA
+                    span PRIRODKU
+        div(style='border: 1px solid #ccc; border-width: 1px 0px')
+            block content
+        .container
+            .row
+                .col-xs-6.col-sm-4.col-md-8
+                    p &copy; 2016 The V. Team
+                .col-xs-6.col-sm-8.col-md-4
+                    p
+                        a(href='mailto:feedback@naprirodku.ru') feedback@naprirodku.ru

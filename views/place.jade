@@ -12,7 +12,7 @@ block content
         .row
             .col-md-7.place !{article}
             .col-md-4.col-md-offset-1
-                .page-header
+                .header
                     h2(style='color: #999') Расположение
                 #map(style='height: 250px')
                 script(type='text/javascript').
@@ -43,31 +43,37 @@ block content
                     tr
                         td Координаты
                         td [#{meta.position.lat},#{meta.position.lng}]
-                .page-header
+                .header
                     h2(style='color: #999') Поделиться
                 script(type='text/javascript', src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js', charset='utf-8')
                 script(type='text/javascript', src='//yastatic.net/share2/share.js', charset='utf-8')
                 .ya-share2(data-services='vkontakte,facebook,gplus,twitter', data-counter='')
-                .page-header
+                .header
                     h2(style='color: #999') Новые места
-                p
-                    a(href='/places/1/')
-                        img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg')
-                h3
-                    a(href='/places/1/') Интеллигибельный знак
-                p Гегельянство индуцирует дуализм. Культ джайнизма включает в себя поклонение Махавире и другим тиртханкарам, поэтому искусство непредсказуемо. Заблуждение осмысляет даосизм, открывая новые горизонты. Априори, атомистика транспонирует данный гравитационный парадокс.
-                p
-                    a(href='/places/1/')
-                        img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg')
-                h3
-                    a(href='/places/1/') Почему иллюзорна врожденная интуиция?
-                p По своим философским взглядам Дезами был материалистом и атеистом, последователем Гельвеция, однако здравый смысл раскладывает на элементы непредвиденный знак. Катарсис транспонирует из ряда вон выходящий закон внешнего мира. Позитивизм, следовательно, реально рассматривается дуализм, изменяя привычную реальность.
-                p
-                    a(href='/places/1/')
-                        img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg')
-                h3
-                    a(href='/places/1/') Данный дуализм: основные моменты
-                p Гегельянство реально выводит предмет деятельности. Катарсис прост. Гегельянство рассматривается данный катарсис, tertium nоn datur. Эсхатологическая идея, конечно, создает гений, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире.
+                .row
+                    .col-sm-4.col-md-12
+                        a(href='/places/1/')
+                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
+                    .col-sm-8.col-md-12
+                        h3(style='margin: 0px')
+                            a(href='/places/1/') Интеллигибельный знак
+                        p Гегельянство индуцирует дуализм. Культ джайнизма включает в себя поклонение Махавире и другим тиртханкарам, поэтому искусство непредсказуемо. Заблуждение осмысляет даосизм, открывая новые горизонты. Априори, атомистика транспонирует данный гравитационный парадокс.
+                .row
+                    .col-sm-4.col-md-12
+                        a(href='/places/1/')
+                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
+                    .col-sm-8.col-md-12
+                        h3(style='margin: 0px')
+                            a(href='/places/1/') Почему иллюзорна врожденная интуиция?
+                        p По своим философским взглядам Дезами был материалистом и атеистом, последователем Гельвеция, однако здравый смысл раскладывает на элементы непредвиденный знак. Катарсис транспонирует из ряда вон выходящий закон внешнего мира. Позитивизм, следовательно, реально рассматривается дуализм, изменяя привычную реальность.
+                .row
+                    .col-sm-4.col-md-12
+                        a(href='/places/1/')
+                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
+                    .col-sm-8.col-md-12
+                        h3(style='margin: 0px')
+                            a(href='/places/1/') Данный дуализм: основные моменты
+                        p Гегельянство реально выводит предмет деятельности. Катарсис прост. Гегельянство рассматривается данный катарсис, tertium nоn datur. Эсхатологическая идея, конечно, создает гений, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире.
     script(type='text/javascript').
         $(document).ready(function() {
             $('.place img').parent('a').addClass('fancybox').attr('rel', 'gallery');

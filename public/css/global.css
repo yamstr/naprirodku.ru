@@ -34,6 +34,11 @@ a:hover {
     font-weight: 300;
 }
 
+.header {
+    margin: 40px 0px 20px 0px;
+    border-bottom: 1px solid #eee;
+}
+
 .place p {
     font-size: 16px;
 }
