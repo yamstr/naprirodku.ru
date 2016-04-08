@@ -16,11 +16,11 @@ app.use(slash());
 app.use(express.static('public'));
 app.use(morgan('dev'));
 
-app.get('/', function(req, res) {
+app.get('/', function(req, res, next) {
     res.render('index');
 });
 
-app.get('/places/:id/', function(req, res) {
+app.get('/places/:id/', function(req, res, next) {
     var files = {
         article: __dirname + '/data/plases/' + req.params.id + '/article.md',
         meta: __dirname + '/data/plases/' + req.params.id + '/meta.json'
@@ -36,7 +36,7 @@ app.get('/places/:id/', function(req, res) {
         });
     }, function(err, results) {
         if (err) {
-            res.status(404).end();
+            next();
         } else {
             res.render('place', {
                 article: marked(results.article),
@@ -46,7 +46,7 @@ app.get('/places/:id/', function(req, res) {
     });
 });
 
-app.get('/places/:id/photos/:file', function(req, res) {
+app.get('/places/:id/photos/:file', function(req, res, next) {
     res.sendFile(req.params.file, {
         root: __dirname + '/data/plases/' + req.params.id + '/photos',
         dotfiles: 'deny'
@@ -55,6 +55,10 @@ app.get('/places/:id/photos/:file', function(req, res) {
             res.status(err.status).end();
         }
     });
+});
+
+app.use(function(req, res, next) {
+    res.status(404).render('404');
 });
 
 app.use(rollbar.errorHandler('cb69db9d4c8341e4bf1a4b2d2cb8f9a3'));
