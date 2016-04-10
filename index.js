@@ -1,5 +1,4 @@
 var config = require('config');
-var async = require('async');
 var validator = require('validator');
 var marked = require('marked');
 var express = require('express');
@@ -26,45 +25,30 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/articles/:id/', function(req, res, next) {
-    async.waterfall([
-        function(callback) {
-            db.one('SELECT * FROM articles WHERE id = ${id}', {
-                id: req.params.id
-            })
-            .then(function(article) {
-                article.body = marked(article.body);
+    db.task(function(t) {
+        return t.one('SELECT * FROM articles WHERE id = ${id}', {
+            id: req.params.id
+        }).then(function(article) {
+            article.body = marked(article.body);
 
-                callback(null, article);
-            })
-            .catch(function(error) {
-                callback(error);
-            })
-        },
-        function(article, callback) {
-            db.one('SELECT *, position[0] AS lat, position[1] AS lng FROM places WHERE id = ${id}', {
+            return t.one('SELECT *, position[0] AS lat, position[1] AS lng FROM places WHERE id = ${id}', {
                 id: article.place_id
-            })
-            .then(function(place) {
+            }).then(function(place) {
                 place.position = {
                     lat: place.lat,
                     lng: place.lng,
                 };
 
-                callback(null, article, place);
-            })
-            .catch(function(error) {
-                callback(error);
-            })
-        }
-    ], function(error, article, place) {
-        if (error) {
-            next();
-        } else {
-            res.render('article', {
-                article: article,
-                place: place
+                return {
+                    article: article,
+                    place: place
+                };
             });
-        }
+        });
+    }).then(function(data) {
+        res.render('article', data);
+    }).catch(function(error) {
+        next();
     });
 });
 
