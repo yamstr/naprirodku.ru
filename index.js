@@ -1,4 +1,3 @@
-var fs = require('fs');
 var config = require('config');
 var async = require('async');
 var validator = require('validator');
@@ -8,6 +7,12 @@ var slash = require('express-slash');
 var morgan = require('morgan');
 var rollbar = require('rollbar');
 var app = express();
+
+var bluebird = require('bluebird');
+var pgp = require('pg-promise')({
+    promiseLib: bluebird
+});
+var db = pgp(process.env.DB || config.db);
 
 app.set('port', process.env.PORT || config.port);
 app.set('view engine', 'jade');
@@ -20,35 +25,52 @@ app.get('/', function(req, res, next) {
     res.render('index');
 });
 
-app.get('/places/:id/', function(req, res, next) {
-    var files = {
-        article: __dirname + '/data/plases/' + req.params.id + '/article.md',
-        meta: __dirname + '/data/plases/' + req.params.id + '/meta.json'
-    };
+app.get('/articles/:id/', function(req, res, next) {
+    async.waterfall([
+        function(callback) {
+            db.one('SELECT * FROM articles WHERE id = ${id}', {
+                id: req.params.id
+            })
+            .then(function(article) {
+                article.body = marked(article.body);
 
-    async.map(files, function(file, callback) {
-        fs.readFile(file, { encoding: 'utf8' }, function(err, data) {
-            if (err) {
-                callback(err, null);
-            } else {
-                callback(null, data);
-            }
-        });
-    }, function(err, results) {
-        if (err) {
+                callback(null, article);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+        },
+        function(article, callback) {
+            db.one('SELECT *, position[0] AS lat, position[1] AS lng FROM places WHERE id = ${id}', {
+                id: article.place_id
+            })
+            .then(function(place) {
+                place.position = {
+                    lat: place.lat,
+                    lng: place.lng,
+                };
+
+                callback(null, article, place);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+        }
+    ], function(error, article, place) {
+        if (error) {
             next();
         } else {
-            res.render('place', {
-                article: marked(results.article),
-                meta: JSON.parse(results.meta)
+            res.render('article', {
+                article: article,
+                place: place
             });
         }
     });
 });
 
-app.get('/places/:id/photos/:file', function(req, res, next) {
+app.get('/articles/:id/photos/:file', function(req, res, next) {
     res.sendFile(req.params.file, {
-        root: __dirname + '/data/plases/' + req.params.id + '/photos',
+        root: __dirname + '/data/articles/' + req.params.id + '/photos',
         dotfiles: 'deny'
     }, function(err) {
         if (err) {

@@ -1,16 +1,15 @@
 extends ./layout.jade
 
 block title
-    title #{meta.title}
+    title #{article.title}
 
 block description
-    meta(name='description', content=meta.lead)
-    meta(name='image', content=meta.photo)
+    meta(name='description', content=article.lead)
 
 block content
     .container
         .row
-            .col-md-7.place !{article}
+            .col-md-7.place !{article.body}
             .col-md-4.col-md-offset-1
                 .header
                     h2(style='color: #999') Расположение
@@ -19,8 +18,8 @@ block content
                     function initMap() {
                         var map = new google.maps.Map(document.getElementById('map'), {
                             center: {
-                                lat: #{meta.position.lat},
-                                lng: #{meta.position.lng}
+                                lat: #{place.position.lat},
+                                lng: #{place.position.lng}
                             },
                             disableDefaultUI: true,
                             zoomControl: true,
@@ -30,8 +29,8 @@ block content
                         var marker = new google.maps.Marker({
                             map: map,
                             position: {
-                                lat: #{meta.position.lat},
-                                lng: #{meta.position.lng}
+                                lat: #{place.position.lat},
+                                lng: #{place.position.lng}
                             }
                         });
                     }
@@ -39,10 +38,10 @@ block content
                 table.table
                     tr
                         td Адрес
-                        td #{meta.address}
+                        td #{place.address}
                     tr
                         td Координаты
-                        td [#{meta.position.lat},#{meta.position.lng}]
+                        td [#{place.position.lat},#{place.position.lng}]
                 .header
                     h2(style='color: #999') Поделиться
                 script(type='text/javascript', src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js', charset='utf-8')
@@ -52,31 +51,31 @@ block content
                     h2(style='color: #999') Новые места
                 .row
                     .col-sm-4.col-md-12
-                        a(href='/places/1/')
+                        a(href='/articles/1/')
                             img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
                     .col-sm-8.col-md-12
                         h3(style='margin: 0px')
-                            a(href='/places/1/') Интеллигибельный знак
+                            a(href='/articles/1/') Интеллигибельный знак
                         p Гегельянство индуцирует дуализм. Культ джайнизма включает в себя поклонение Махавире и другим тиртханкарам, поэтому искусство непредсказуемо. Заблуждение осмысляет даосизм, открывая новые горизонты. Априори, атомистика транспонирует данный гравитационный парадокс.
                         p
                             small 17.01.2016
                 .row
                     .col-sm-4.col-md-12
-                        a(href='/places/1/')
+                        a(href='/articles/1/')
                             img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
                     .col-sm-8.col-md-12
                         h3(style='margin: 0px')
-                            a(href='/places/1/') Почему иллюзорна врожденная интуиция?
+                            a(href='/articles/1/') Почему иллюзорна врожденная интуиция?
                         p По своим философским взглядам Дезами был материалистом и атеистом, последователем Гельвеция, однако здравый смысл раскладывает на элементы непредвиденный знак. Катарсис транспонирует из ряда вон выходящий закон внешнего мира. Позитивизм, следовательно, реально рассматривается дуализм, изменяя привычную реальность.
                         p
                             small 16.01.2016
                 .row
                     .col-sm-4.col-md-12
-                        a(href='/places/1/')
+                        a(href='/articles/1/')
                             img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
                     .col-sm-8.col-md-12
                         h3(style='margin: 0px')
-                            a(href='/places/1/') Данный дуализм: основные моменты
+                            a(href='/articles/1/') Данный дуализм: основные моменты
                         p Гегельянство реально выводит предмет деятельности. Катарсис прост. Гегельянство рассматривается данный катарсис, tertium nоn datur. Эсхатологическая идея, конечно, создает гений, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире.
                         p
                             small 15.01.2016

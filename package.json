@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "async": "^2.0.0-rc.2",
+    "bluebird": "^3.3.4",
     "config": "^1.19.0",
     "express": "^4.13.4",
     "express-slash": "^2.0.1",
