@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --harmony index.js"
   },
   "dependencies": {
-    "bluebird": "^3.3.4",
     "config": "^1.19.0",
     "express": "^4.13.4",
     "express-slash": "^2.0.1",
@@ -14,7 +13,6 @@
     "marked": "^0.3.5",
     "morgan": "^1.7.0",
     "pg-promise": "^3.6.2",
-    "rollbar": "^0.6.0",
-    "validator": "^5.1.0"
+    "rollbar": "^0.6.0"
   }
 }

@@ -1,17 +1,15 @@
-var config = require('config');
-var validator = require('validator');
-var marked = require('marked');
-var express = require('express');
-var slash = require('express-slash');
-var morgan = require('morgan');
-var rollbar = require('rollbar');
-var app = express();
+'use strict';
 
-var bluebird = require('bluebird');
-var pgp = require('pg-promise')({
-    promiseLib: bluebird
-});
-var db = pgp(process.env.DB || config.db);
+let config = require('config');
+let marked = require('marked');
+let express = require('express');
+let slash = require('express-slash');
+let morgan = require('morgan');
+let rollbar = require('rollbar');
+let app = express();
+
+let pgp = require('pg-promise')();
+let db = pgp(process.env.DB || config.db);
 
 app.set('port', process.env.PORT || config.port);
 app.set('view engine', 'jade');
@@ -25,27 +23,18 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/articles/:id/', function(req, res, next) {
-    db.task(function(t) {
-        return t.one('SELECT * FROM articles WHERE id = ${id}', {
-            id: req.params.id
-        }).then(function(article) {
-            article.body = marked(article.body);
+    db.task(function*(t) {
+        let article = yield t.one('SELECT * FROM articles WHERE id = $1', req.params.id);
+        let place = yield t.one('SELECT *, position[0] AS lat, position[1] AS lng FROM places WHERE id = $1', article.place_id);
 
-            return t.one('SELECT *, position[0] AS lat, position[1] AS lng FROM places WHERE id = ${id}', {
-                id: article.place_id
-            }).then(function(place) {
-                place.position = {
-                    lat: place.lat,
-                    lng: place.lng,
-                };
-
-                return {
-                    article: article,
-                    place: place
-                };
-            });
-        });
+        return { article, place };
     }).then(function(data) {
+        data.article.body = marked(data.article.body);
+        data.place.position = {
+            lat: data.place.lat,
+            lng: data.place.lng
+        };
+
         res.render('article', data);
     }).catch(function(error) {
         next();
@@ -67,6 +56,6 @@ app.use(function(req, res, next) {
     res.status(404).render('404');
 });
 
-app.use(rollbar.errorHandler('cb69db9d4c8341e4bf1a4b2d2cb8f9a3'));
+app.use(rollbar.errorHandler(process.env.ROLLBAR || config.rollbar));
 
 app.listen(app.get('port'));
