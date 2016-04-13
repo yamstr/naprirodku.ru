@@ -32,9 +32,10 @@ block content
                     function initMap() {
                         var map = new google.maps.Map(document.getElementById('map'), {
                             center: {
-                                lat: #{place.position.lat},
-                                lng: #{place.position.lng}
+                                lat: #{article.place.position.lat},
+                                lng: #{article.place.position.lng}
                             },
+                            scrollwheel: false,
                             disableDefaultUI: true,
                             zoomControl: true,
                             zoom: 10
@@ -43,8 +44,8 @@ block content
                         var marker = new google.maps.Marker({
                             map: map,
                             position: {
-                                lat: #{place.position.lat},
-                                lng: #{place.position.lng}
+                                lat: #{article.place.position.lat},
+                                lng: #{article.place.position.lng}
                             }
                         });
                     }
@@ -52,10 +53,10 @@ block content
                 table.table
                     tr
                         td Адрес
-                        td #{place.address}
+                        td #{article.place.address}
                     tr
                         td Координаты
-                        td [#{place.position.lat},#{place.position.lng}]
+                        td [#{article.place.position.lat},#{article.place.position.lng}]
                 .header
                     h2(style='color: #999') Поделиться
                 script(type='text/javascript', src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js', charset='utf-8')
@@ -63,36 +64,8 @@ block content
                 .ya-share2(data-services='vkontakte,facebook,gplus,twitter', data-counter='')
                 .header
                     h2(style='color: #999') Новые места
-                .row
-                    .col-sm-4.col-md-12
-                        a(href='/articles/1/')
-                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
-                    .col-sm-8.col-md-12
-                        h3(style='margin: 0px')
-                            a(href='/articles/1/') Интеллигибельный знак
-                        p Гегельянство индуцирует дуализм. Культ джайнизма включает в себя поклонение Махавире и другим тиртханкарам, поэтому искусство непредсказуемо. Заблуждение осмысляет даосизм, открывая новые горизонты. Априори, атомистика транспонирует данный гравитационный парадокс.
-                        p
-                            small 17.01.2016
-                .row
-                    .col-sm-4.col-md-12
-                        a(href='/articles/1/')
-                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
-                    .col-sm-8.col-md-12
-                        h3(style='margin: 0px')
-                            a(href='/articles/1/') Почему иллюзорна врожденная интуиция?
-                        p По своим философским взглядам Дезами был материалистом и атеистом, последователем Гельвеция, однако здравый смысл раскладывает на элементы непредвиденный знак. Катарсис транспонирует из ряда вон выходящий закон внешнего мира. Позитивизм, следовательно, реально рассматривается дуализм, изменяя привычную реальность.
-                        p
-                            small 16.01.2016
-                .row
-                    .col-sm-4.col-md-12
-                        a(href='/articles/1/')
-                            img.img-responsive(src='http://hdgallery.ru/wp-content/uploads/2015/05/%D0%AD%D1%82%D0%BE-%D0%9F%D0%B8%D1%82%D0%B5%D1%80-%D0%B4%D0%B5%D1%82%D0%BA%D0%B04.jpg', style='margin-bottom: 20px')
-                    .col-sm-8.col-md-12
-                        h3(style='margin: 0px')
-                            a(href='/articles/1/') Данный дуализм: основные моменты
-                        p Гегельянство реально выводит предмет деятельности. Катарсис прост. Гегельянство рассматривается данный катарсис, tertium nоn datur. Эсхатологическая идея, конечно, создает гений, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире.
-                        p
-                            small 15.01.2016
+                each article in articles
+                    include lead
     script(type='text/javascript').
         $(document).ready(function() {
             $('.place img').parent('a').addClass('fancybox').attr('rel', 'gallery');

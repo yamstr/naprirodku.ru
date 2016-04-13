@@ -16,6 +16,21 @@ html
         link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,cyrillic')
         link(rel='stylesheet', type='text/css', href='/css/global.css')
     body
+        //
+            nav.navbar.navbar-default.navbar-fixed-top
+                .container
+                    .navbar-header
+                        a.navbar-brand(href='/') PRIRODKU
+                        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                    #bs-example-navbar-collapse-1.navbar-collapse.collapse
+                        ul.nav.navbar-nav.navbar-right
+                            li.active
+                                a(href='#') Link
+                            li
+                                a(href='#') Link
         .container
             .logotype
                 a(href='/', style='text-decoration: none; color: #000')
