@@ -1,10 +1,17 @@
 extends ./layout.jade
 
 block title
-    title #{article.title}
+    title #{article.place.name}: #{article.title}
 
 block description
     meta(name='description', content=article.lead)
+
+block og
+    meta(property='og:type', content='article')
+    meta(property='og:url', content='http://naprirodku.ru/articles/#{article.id}/')
+    meta(property='og:image', content='http://naprirodku.ru/articles/#{article.id}/photos/cover.jpg')
+    meta(property='og:title', content='#{article.place.name}: #{article.title}')
+    meta(property='og:description', content=article.lead)
 
 block content
     .container

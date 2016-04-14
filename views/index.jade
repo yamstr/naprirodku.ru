@@ -1,16 +1,17 @@
 extends ./layout.jade
 
 block content
-    #map(style='height: 400px')
-    script(type='text/javascript').
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 59.91815363876071, lng: 30.30557799999997},
-                scrollwheel: false,
-                zoom: 9
-            });
-        }
-    script(src='//maps.googleapis.com/maps/api/js?key=AIzaSyBS1iXc1LK53yU-_bkbBuFi3rDatIoqBa8&callback=initMap')
+    //
+        #map(style='height: 400px')
+        script(type='text/javascript').
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 59.91815363876071, lng: 30.30557799999997},
+                    scrollwheel: false,
+                    zoom: 9
+                });
+            }
+        script(src='//maps.googleapis.com/maps/api/js?key=AIzaSyBS1iXc1LK53yU-_bkbBuFi3rDatIoqBa8&callback=initMap')
     .container
         .header
             h2 Новые места

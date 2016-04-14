@@ -4,7 +4,7 @@
             img.img-responsive(src='/articles/#{article.id}/photos/cover.jpg', style='margin-bottom: 20px')
     .col-sm-8.col-md-12
         h3(style='margin: 0px')
-            a(href='/articles/#{article.id}/') #{article.place.name} // #{article.title}
+            a(href='/articles/#{article.id}/') #{article.place.name}: #{article.title}
         p #{article.lead}
         p
             small #{article.created}
