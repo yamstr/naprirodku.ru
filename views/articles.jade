@@ -1,0 +1,13 @@
+extends ./layout.jade
+
+block title
+    title Все статьи
+
+block content
+    .container
+        .header
+            h2 Все статьи
+        .row
+            each article in articles
+                .col-md-4
+                    include lead

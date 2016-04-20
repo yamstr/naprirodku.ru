@@ -29,6 +29,32 @@ app.get('/', co.wrap(function*(req, res, next) {
         let articles = yield Articles.getArticles({ limit: 3 });
 
         res.render('index', {
+            section: 'index',
+            places: places.map(function(place) {
+                return place.export();
+            }),
+            articles: articles.map(function(article) {
+                places.forEach(function(place) {
+                    if (place.id == article.place_id) {
+                        article.place = place;
+                    }
+                });
+
+                return article.export();
+            })
+        });
+    } catch(error) {
+        next(error);
+    }
+}));
+
+app.get('/articles/', co.wrap(function*(req, res, next) {
+    try {
+        let places = yield Places.getPlaces();
+        let articles = yield Articles.getArticles();
+
+        res.render('articles', {
+            section: 'articles',
             places: places.map(function(place) {
                 return place.export();
             }),
@@ -54,6 +80,7 @@ app.get('/articles/:id/', co.wrap(function*(req, res, next) {
         let article = yield Articles.getArticleById({ id: req.params.id });
 
         res.render('article', {
+            section: 'articles',
             places: places.map(function(place) {
                 return place.export();
             }),
