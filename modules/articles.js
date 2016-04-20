@@ -43,8 +43,8 @@ module.exports = function(db) {
             FROM public.articles
             WHERE articles.id = ${params.id}`;
 
-            return db.one(sql).then(function(record) {
-                return new Article(record);
+            return db.oneOrNone(sql).then(function(record) {
+                return record ? new Article(record) : null;
             });
         }
     };

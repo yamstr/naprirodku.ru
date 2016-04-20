@@ -12,9 +12,9 @@
     "express-slash": "^2.0.1",
     "jade": "^1.11.0",
     "marked": "^0.3.5",
-    "moment": "^2.12.0",
+    "moment": "^2.13.0",
     "morgan": "^1.7.0",
-    "pg-promise": "^3.6.2",
+    "pg-promise": "^3.9.0",
     "rollbar": "^0.6.0"
   }
 }
