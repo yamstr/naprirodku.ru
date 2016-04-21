@@ -8,6 +8,8 @@ block content
         .header
             h2 Все статьи
         .row
-            each article in articles
+            each article, index in articles
+                if index % 3 == 0
+                    .clearfix
                 .col-md-4
                     include lead
