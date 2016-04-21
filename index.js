@@ -33,6 +33,13 @@ app.get('/', co.wrap(function*(req, res, next) {
             places: places.map(function(place) {
                 return place.export();
             }),
+            places_json: (function(places) {
+                places = places.map(function(place) {
+                    return place.export();
+                });
+
+                return JSON.stringify(places);
+            })(places),
             articles: articles.map(function(article) {
                 places.forEach(function(place) {
                     if (place.id == article.place_id) {
