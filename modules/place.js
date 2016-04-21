@@ -1,7 +1,5 @@
 'use strict';
 
-let moment = require('moment');
-
 module.exports = class Place {
     constructor(data) {
         this.id = data.id;
@@ -12,10 +10,6 @@ module.exports = class Place {
     }
 
     export() {
-        let place = JSON.parse(JSON.stringify(this));
-
-        place.created = moment(place.created).format('DD.MM.YYYY');
-
-        return place;
+        return JSON.parse(JSON.stringify(this));
     }
 };

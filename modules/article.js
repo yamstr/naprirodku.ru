@@ -1,6 +1,5 @@
 'use strict';
 
-let moment = require('moment');
 let marked = require('marked');
 
 module.exports = class Article {
@@ -17,7 +16,6 @@ module.exports = class Article {
     export() {
         let article = JSON.parse(JSON.stringify(this));
 
-        article.created = moment(article.created).format('DD.MM.YYYY');
         article.body = marked(article.body);
 
         return article;
