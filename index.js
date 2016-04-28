@@ -11,6 +11,7 @@ let app = express();
 let pgp = require('pg-promise')();
 let db = pgp(process.env.DB || config.db);
 
+let Users = require('./modules/users')(db);
 let Places = require('./modules/places')(db);
 let Articles = require('./modules/articles')(db);
 
@@ -82,6 +83,7 @@ app.get('/articles/', co.wrap(function*(req, res, next) {
 
 app.get('/articles/:id/', co.wrap(function*(req, res, next) {
     try {
+        let users = yield Users.getUsers();
         let places = yield Places.getPlaces();
         let articles = yield Articles.getArticles({ without: [req.params.id], limit: 3 });
         let article = yield Articles.getArticleById({ id: req.params.id });
@@ -101,6 +103,12 @@ app.get('/articles/:id/', co.wrap(function*(req, res, next) {
                 return article.export();
             }),
             article: (function(article) {
+                users.forEach(function(user) {
+                    if (user.id == article.user_id) {
+                        article.user = user;
+                    }
+                });
+
                 places.forEach(function(place) {
                     if (place.id == article.place_id) {
                         article.place = place;
@@ -114,6 +122,17 @@ app.get('/articles/:id/', co.wrap(function*(req, res, next) {
         next(error);
     }
 }));
+
+app.get('/users/:id/avatar.jpg', function(req, res, next) {
+    res.sendFile(req.params.id + '.jpg', {
+        root: __dirname + '/data/users',
+        dotfiles: 'deny'
+    }, function(err) {
+        if (err) {
+            res.status(err.status).end();
+        }
+    });
+});
 
 app.get('/articles/:id/photos/:file', function(req, res, next) {
     res.sendFile(req.params.file, {

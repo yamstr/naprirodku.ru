@@ -12,6 +12,8 @@ block og
     meta(property='og:image', content='http://naprirodku.ru/articles/#{article.id}/photos/cover.jpg')
     meta(property='og:title', content='#{article.place.name}: #{article.title}')
     meta(property='og:description', content=article.lead)
+    meta(property='article:author:first_name', content=article.user.firstname)
+    meta(property='article:author:last_name', content=article.user.lastname)
 
 block append scripts
     script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js')
@@ -70,9 +72,21 @@ block content
     .container
         .row
             .col-md-7
+
                 .article !{article.body}
+
                 #hypercomments_widget
+
             .col-md-4.col-md-offset-1
+
+                .header.visible-xs-block.visible-sm-block
+                    h2(style='color: #999') Автор
+                .media(style='margin: 20px 0px')
+                    .media-left.media-middle
+                        img.media-object.img-circle(src='/users/#{article.user.id}/avatar.jpg', width='100px')
+                    .media-body.media-middle
+                        h3.media-heading #{article.user.firstname} #{article.user.lastname}
+
                 .header
                     h2(style='color: #999') Расположение
                 #map(style='height: 250px')
@@ -83,9 +97,11 @@ block content
                     tr
                         td Координаты
                         td [#{article.place.position.lat},#{article.place.position.lng}]
+
                 .header
                     h2(style='color: #999') Поделиться
                 #share
+
                 .header
                     h2(style='color: #999') Новые статьи
                 each article in articles
