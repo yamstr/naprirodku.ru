@@ -16,7 +16,6 @@ p {
     margin: 20px 0px;
     padding: 0px;
     font-weight: 300;
-    line-height: 1.5;
 }
 
 a {
@@ -27,26 +26,32 @@ a:hover {
     color: #cc0000;
 }
 
-.logotype {
-    margin: 20px 0px;
-    padding: 0px;
-    font-size: 36px;
-    font-weight: 300;
-}
-
-.description {
-    font-size: 16px;
-}
-
 .header {
     margin: 40px 0px 20px 0px;
     border-bottom: 1px solid #eee;
 }
 
+.article h1 {
+    line-height: 1.25;
+}
+
+.article h2 {
+    line-height: 1.25;
+}
+
 .article p {
     font-size: 16px;
+    line-height: 1.5;
 }
 
 .article img {
-    max-width: 100%;
+    width: 100%;
+}
+
+.article-lead h3 {
+    line-height: 1.25;
+}
+
+.article-lead p {
+    line-height: 1.5;
 }

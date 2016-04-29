@@ -16,6 +16,8 @@ block og
     meta(property='article:author:last_name', content=article.user.lastname)
 
 block append scripts
+
+    //- Fancybox
     script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js')
     script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js')
     script(type='text/javascript').
@@ -23,6 +25,8 @@ block append scripts
             $('.article img').parent('a').addClass('fancybox').attr('rel', 'gallery');
             $('.fancybox').fancybox();
         });
+
+    //- Google Maps
     script(type='text/javascript', src='//maps.googleapis.com/maps/api/js?key=AIzaSyBS1iXc1LK53yU-_bkbBuFi3rDatIoqBa8')
     script(type='text/javascript').
         google.maps.event.addDomListener(window, 'load', function() {
@@ -44,6 +48,8 @@ block append scripts
                 position: position
             });
         });
+
+    //- Yandex Share
     script(type='text/javascript', src='//yastatic.net/share2/share.js')
     script(type='text/javascript').
         Ya.share2('share', {
@@ -52,6 +58,8 @@ block append scripts
                 counter: true
             }
         });
+
+    //- HyperComments
     script(type='text/javascript').
         _hcwp = window._hcwp || [];
         _hcwp.push({widget:"Stream", widget_id: 73569});
@@ -66,27 +74,33 @@ block append scripts
         })();
 
 block append styles
+
+    //- Fancybox
     link(rel='stylesheet', type='text/css', href='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css')
 
 block content
-    .container
+    .container(style='margin-top: 20px')
         .row
             .col-md-7
 
+                //- Article
                 .article !{article.body}
 
+                //- Comments
                 #hypercomments_widget
 
             .col-md-4.col-md-offset-1
 
+                //- Author
                 .header.visible-xs-block.visible-sm-block
                     h2(style='color: #999') Автор
                 .media(style='margin: 20px 0px')
                     .media-left.media-middle
-                        img.media-object.img-circle(src='/users/#{article.user.id}/avatar.jpg', width='100px')
+                        img.media-object.img-circle(src='/users/#{article.user.id}/avatar.jpg', style='width: 100px; height: 100px')
                     .media-body.media-middle
                         h3.media-heading #{article.user.firstname} #{article.user.lastname}
 
+                //- Location
                 .header
                     h2(style='color: #999') Расположение
                 #map(style='height: 250px')
@@ -98,10 +112,12 @@ block content
                         td Координаты
                         td [#{article.place.position.lat},#{article.place.position.lng}]
 
+                //- Share
                 .header
                     h2(style='color: #999') Поделиться
                 #share
 
+                //- New Articles
                 .header
                     h2(style='color: #999') Новые статьи
                 each article in articles
