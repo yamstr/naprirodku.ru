@@ -4,6 +4,7 @@ let co = require('co');
 let config = require('config');
 let express = require('express');
 let slash = require('express-slash');
+let compression = require('compression');
 let morgan = require('morgan');
 let rollbar = require('rollbar');
 let app = express();
@@ -21,6 +22,7 @@ app.set('port', process.env.PORT || config.port);
 app.set('view engine', 'jade');
 app.enable('strict routing');
 app.use(slash());
+app.use(compression());
 app.use(express.static('build'));
 app.use(morgan('dev'));
 

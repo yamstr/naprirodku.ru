@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var sharp = require('gulp-sharp');
+var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
 var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
@@ -32,11 +34,13 @@ gulp.task('images:build', function() {
 
 gulp.task('scripts:build', function() {
     gulp.src(path.src.scripts)
+        .pipe(uglify())
         .pipe(gulp.dest(path.build.scripts));
 });
 
 gulp.task('styles:build', function() {
     gulp.src(path.src.styles)
+        .pipe(sass())
         .pipe(gulp.dest(path.build.styles));
 });
 
