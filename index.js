@@ -21,7 +21,7 @@ app.set('port', process.env.PORT || config.port);
 app.set('view engine', 'jade');
 app.enable('strict routing');
 app.use(slash());
-app.use(express.static('public'));
+app.use(express.static('build'));
 app.use(morgan('dev'));
 
 app.get('/', co.wrap(function*(req, res, next) {
@@ -125,7 +125,7 @@ app.get('/articles/:id/', co.wrap(function*(req, res, next) {
 
 app.get('/users/:id/avatar.jpg', function(req, res, next) {
     res.sendFile(req.params.id + '.jpg', {
-        root: __dirname + '/data/users',
+        root: __dirname + '/build/images/users',
         dotfiles: 'deny'
     }, function(err) {
         if (err) {
@@ -136,7 +136,7 @@ app.get('/users/:id/avatar.jpg', function(req, res, next) {
 
 app.get('/articles/:id/photos/:file', function(req, res, next) {
     res.sendFile(req.params.file, {
-        root: __dirname + '/data/articles/' + req.params.id + '/photos',
+        root: __dirname + '/build/images/articles/' + req.params.id + '/photos',
         dotfiles: 'deny'
     }, function(err) {
         if (err) {
