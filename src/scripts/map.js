@@ -60,7 +60,7 @@ var Map = function(container, config) {
 		});
 
 		this.markers.push(marker);
-		this.updateClusters();
+//		this.updateClusters();
 		this.updateZoom();
 	};
 };
