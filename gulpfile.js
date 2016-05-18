@@ -7,7 +7,7 @@ var watch = require('gulp-watch');
 
 var path = {
     src: {
-        images: 'src/images/*.svg',
+        images: 'src/images/**/*.*',
         scripts: 'src/scripts/**/*.*',
         styles: 'src/styles/**/*.*',
         photos: 'data/**/*.jpg',
