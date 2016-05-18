@@ -3,7 +3,15 @@ var Map = function(container, config) {
 
 	this.markers = [];
 	this._map = new google.maps.Map(document.getElementById(container), config);
-	this._markerClusterer = new MarkerClusterer(this._map);
+	this._markerClusterer = new MarkerClusterer(this._map, null, {
+		styles: [{
+			url: '/images/cluster.svg',
+			height: 40,
+			width: 40,
+			textColor: '#fff',
+			textSize: 14
+		}]
+	});
 
 	this.updateClusters = function() {
 		this._markerClusterer.clearMarkers();
@@ -40,7 +48,8 @@ var Map = function(container, config) {
 			map: this._map,
 			position: marker.position,
 			title: marker.name,
-			animation: google.maps.Animation.DROP
+			animation: google.maps.Animation.DROP,
+			icon: new google.maps.MarkerImage('/images/marker.svg', null, null, null, new google.maps.Size(20, 23))
 		});
 
 		// Создаем информационное окно
@@ -60,7 +69,7 @@ var Map = function(container, config) {
 		});
 
 		this.markers.push(marker);
-//		this.updateClusters();
+		this.updateClusters();
 		this.updateZoom();
 	};
 };

@@ -7,14 +7,16 @@ var watch = require('gulp-watch');
 
 var path = {
     src: {
-        images: 'data/**/*.jpg',
+        images: 'src/images/*.svg',
         scripts: 'src/scripts/**/*.*',
-        styles: 'src/styles/**/*.*'
+        styles: 'src/styles/**/*.*',
+        photos: 'data/**/*.jpg',
     },
     build: {
         images: 'build/images',
         scripts: 'build/scripts',
-        styles: 'build/styles'
+        styles: 'build/styles',
+        photos: 'build/images'
     }
 };
 
@@ -23,12 +25,6 @@ gulp.task('images:build', function() {
         .pipe(gulp.dest('build'));
 
     gulp.src(path.src.images)
-        .pipe(sharp({
-            resize: [1200, 1200],
-            max: true,
-            quality: 80,
-            progressive: true
-        }))
         .pipe(gulp.dest(path.build.images));
 });
 
@@ -44,7 +40,18 @@ gulp.task('styles:build', function() {
         .pipe(gulp.dest(path.build.styles));
 });
 
-gulp.task('build', ['images:build', 'scripts:build', 'styles:build']);
+gulp.task('photos:build', function() {
+    gulp.src(path.src.photos)
+        .pipe(sharp({
+            resize: [1200, 1200],
+            max: true,
+            quality: 80,
+            progressive: true
+        }))
+        .pipe(gulp.dest(path.build.photos));
+});
+
+gulp.task('build', ['images:build', 'scripts:build', 'styles:build', 'photos:build']);
 
 gulp.task('server', function() {
     nodemon({
@@ -63,6 +70,10 @@ gulp.task('watch', function() {
 
     watch(path.src.styles, function(event, cb) {
         gulp.start('styles:build');
+    });
+
+    watch(path.src.photos, function(event, cb) {
+        gulp.start('photos:build');
     });
 });
 
