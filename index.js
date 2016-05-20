@@ -147,6 +147,24 @@ app.get('/articles/:id/photos/:file', function(req, res, next) {
     });
 });
 
+app.get('/sitemap.txt', co.wrap(function*(req, res, next) {
+    try {
+        let pages = [];
+        let articles = yield Articles.getArticles();
+
+        pages.push('http://naprirodku.ru');
+        pages.push('http://naprirodku.ru/articles/');
+
+        articles.forEach(function(article) {
+            pages.push('http://naprirodku.ru/articles/' + article.id + '/');
+        });
+
+        res.send(pages.join('\n'));
+    } catch(error) {
+        next(error);
+    }
+}));
+
 app.use(function(req, res, next) {
     res.status(404).render('404');
 });
