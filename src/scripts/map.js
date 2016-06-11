@@ -49,7 +49,10 @@ var Map = function(container, config) {
 			position: marker.position,
 			title: marker.name,
 			animation: google.maps.Animation.DROP,
-			icon: new google.maps.MarkerImage('/images/marker.svg', null, null, null, new google.maps.Size(20, 24))
+			icon: {
+				url: '/images/marker.svg',
+				scaledSize: new google.maps.Size(20, 24)
+			}
 		});
 
 		// Создаем информационное окно
