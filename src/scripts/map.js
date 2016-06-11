@@ -51,7 +51,6 @@ var Map = function(container, config) {
 			animation: google.maps.Animation.DROP,
 			icon: {
 				url: '/images/marker.svg',
-				scaledSize: new google.maps.Size(20, 24),
 				size: new google.maps.Size(20, 24)
 			}
 		});
