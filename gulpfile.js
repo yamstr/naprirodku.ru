@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sharp = require('gulp-sharp');
+var responsive = require('gulp-responsive');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var nodemon = require('gulp-nodemon');
@@ -42,11 +42,18 @@ gulp.task('styles:build', function() {
 
 gulp.task('photos:build', function() {
     gulp.src(path.src.photos)
-        .pipe(sharp({
-            resize: [1200, 1200],
+        .pipe(responsive({
+            '**/*.*' : {
+                width: 1200,
+                height: 1200
+            }
+        }, {
             max: true,
             quality: 80,
-            progressive: true
+            progressive: true,
+            errorOnEnlargement: false,
+            stats: false,
+            silent: true
         }))
         .pipe(gulp.dest(path.build.photos));
 });

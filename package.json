@@ -9,19 +9,19 @@
   "dependencies": {
     "co": "^4.6.0",
     "compression": "^1.6.2",
-    "config": "^1.20.2",
-    "express": "^4.13.4",
+    "config": "^1.21.0",
+    "express": "^4.14.0",
     "express-slash": "^2.0.1",
     "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.0.7",
-    "gulp-sass": "^2.3.1",
-    "gulp-sharp": "^0.1.0",
-    "gulp-uglify": "^1.5.3",
-    "gulp-watch": "^4.3.5",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-responsive": "^2.4.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "gulp-watch": "^4.3.8",
     "jade": "^1.11.0",
     "marked": "^0.3.5",
     "morgan": "^1.7.0",
-    "pg-promise": "^4.2.2",
-    "rollbar": "^0.6.0"
+    "pg-promise": "^5.1.0",
+    "rollbar": "^0.6.2"
   }
 }
